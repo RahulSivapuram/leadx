@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 50),
-                child: Text('Version Number: 1.7.10'),
+                child: Text('Version : 1.7.10'),
               ),
             ],
           ),

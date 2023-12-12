@@ -22,6 +22,103 @@ class _KeywordPageState extends State<KeywordPage> {
           style: GoogleFonts.mulish(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 6),
+            child: IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        child: Container(
+                          height: 400,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 79, left: 40, right: 40),
+                                child: Text(
+                                  "Enter your keyword",
+                                  style: GoogleFonts.mulish(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 24,
+                                      color: Colors.black),
+                                ),
+                              ),
+                              //
+                              Padding(
+                                padding: const EdgeInsets.only(top: 16),
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                    left: 8,
+                                    right: 16,
+                                    top: 14,
+                                  ),
+                                  width: 250,
+                                  height: 36,
+                                  color: Color(0xFFF7F7FC),
+                                  child: TextFormField(
+                                    onChanged: (val) {},
+                                    keyboardType: TextInputType.text,
+                                    controller: _keywordcontroller,
+                                    decoration: InputDecoration(
+                                      hintText: "keyword",
+                                      border: InputBorder.none,
+                                      hintStyle: GoogleFonts.mulish(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          color: Color(0xFFADB5BD)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    //print(_keywordcontroller.text);
+
+                                    setState(() {
+                                      keywords.add(_keywordcontroller.text);
+                                    });
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    width: 200,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: Color(0xFF002DE3)),
+                                    child: Center(
+                                      child: Text(
+                                        "Add",
+                                        style: GoogleFonts.mulish(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+              },
+              icon: const Icon(
+                Icons.add,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
       drawer: Drawer(
         child: SafeArea(
@@ -88,7 +185,7 @@ class _KeywordPageState extends State<KeywordPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 50),
-                child: Text('Version Number: 1.7.10'),
+                child: Text('Version : 1.7.10'),
               ),
             ],
           ),
@@ -99,121 +196,15 @@ class _KeywordPageState extends State<KeywordPage> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 300),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Color(0xFF002DE3),
-                  ),
-                  child: Center(
-                    child: IconButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return Dialog(
-                                child: Container(
-                                  height: 400,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 79, left: 40, right: 40),
-                                        child: Text(
-                                          "Enter your keyword",
-                                          style: GoogleFonts.mulish(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 24,
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                      //
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 16),
-                                        child: Container(
-                                          padding: const EdgeInsets.only(
-                                            left: 8,
-                                            right: 16,
-                                            top: 14,
-                                          ),
-                                          width: 250,
-                                          height: 36,
-                                          color: Color(0xFFF7F7FC),
-                                          child: TextFormField(
-                                            onChanged: (val) {},
-                                            keyboardType: TextInputType.text,
-                                            controller: _keywordcontroller,
-                                            decoration: InputDecoration(
-                                              hintText: "keyword",
-                                              border: InputBorder.none,
-                                              hintStyle: GoogleFonts.mulish(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 16,
-                                                  color: Color(0xFFADB5BD)),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 20),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            //print(_keywordcontroller.text);
-
-                                            setState(() {
-                                              keywords
-                                                  .add(_keywordcontroller.text);
-                                            });
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Container(
-                                            width: 200,
-                                            height: 40,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
-                                                color: Color(0xFF002DE3)),
-                                            child: Center(
-                                                child: Text(
-                                              "Add",
-                                              style: GoogleFonts.mulish(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            )),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
-                      },
-                      icon: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 7, right: 15),
+                padding: const EdgeInsets.only(left: 7, right: 15, top: 20),
                 child: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-                  height: MediaQuery.of(context).size.height / 1.5,
+                  height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width / 1,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black, width: 5),
+                    //border: Border.all(color: Colors.black, width: 5),
                   ),
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
