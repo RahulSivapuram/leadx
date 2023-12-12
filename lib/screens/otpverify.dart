@@ -1,23 +1,29 @@
+import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leadx/screens/home.dart';
 
+// ignore: must_be_immutable
 class VerifyOtp extends StatefulWidget {
   final String number;
-  const VerifyOtp({super.key, required this.number});
+  String verificationId;
+  VerifyOtp({super.key, required this.number, required this.verificationId});
 
   @override
   State<VerifyOtp> createState() => _VerifyOtpState();
 }
 
+TextEditingController _otpController = TextEditingController();
+
 class _VerifyOtpState extends State<VerifyOtp> {
-  bool box2 = false;
-  bool box3 = false;
-  bool box4 = false;
-  bool box1 = true;
-  bool box5 = false;
-  bool box6 = false;
+  // bool box2 = false;
+  // bool box3 = false;
+  // bool box4 = false;
+  // bool box1 = true;
+  // bool box5 = false;
+  // bool box6 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,179 +60,196 @@ class _VerifyOtpState extends State<VerifyOtp> {
             Padding(
               padding: const EdgeInsets.only(top: 12, left: 40, right: 40),
               child: Text(
-                "Enter the code we've sent to +91 ${widget.number}",
+                "Enter the code we've sent \n to  ${widget.number}",
                 style: GoogleFonts.mulish(
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
                     color: Colors.black),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 63, right: 64, top: 48),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  box1
-                      ? Container(
-                          width: 32,
-                          height: 40,
-                          child: TextFormField(
-                            //decoration: InputDecoration(border: InputBorder.none),
-                            style: Theme.of(context).textTheme.titleLarge,
-                            keyboardType: TextInputType.number,
-                            onChanged: (val) {
-                              if (val.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                                setState(() {
-                                  box2 = true;
-                                });
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                          ),
-                        )
-                      : circle(),
-                  box2
-                      ? Container(
-                          width: 32,
-                          height: 40,
-                          child: TextFormField(
-                            decoration:
-                                InputDecoration(border: InputBorder.none),
-                            style: Theme.of(context).textTheme.titleLarge,
-                            keyboardType: TextInputType.number,
-                            onChanged: (val) {
-                              if (val.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              }
-                              setState(() {
-                                box3 = true;
-                              });
-                            },
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                          ),
-                        )
-                      : circle(),
-                  box3
-                      ? Container(
-                          width: 32,
-                          height: 40,
-                          child: TextFormField(
-                            decoration:
-                                InputDecoration(border: InputBorder.none),
-                            style: Theme.of(context).textTheme.titleLarge,
-                            keyboardType: TextInputType.number,
-                            onChanged: (val) {
-                              if (val.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              }
-                              setState(() {
-                                box4 = true;
-                              });
-                            },
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                          ),
-                        )
-                      : circle(),
-                  box4
-                      ? Container(
-                          width: 32,
-                          height: 40,
-                          child: TextFormField(
-                            decoration:
-                                InputDecoration(border: InputBorder.none),
-                            style: Theme.of(context).textTheme.titleLarge,
-                            keyboardType: TextInputType.number,
-                            onChanged: (val) {
-                              if (val.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                                setState(() {
-                                  box5 = true;
-                                });
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                          ),
-                        )
-                      : circle(),
-                  box5
-                      ? Container(
-                          width: 32,
-                          height: 40,
-                          child: TextFormField(
-                            decoration:
-                                InputDecoration(border: InputBorder.none),
-                            style: Theme.of(context).textTheme.titleLarge,
-                            keyboardType: TextInputType.number,
-                            onChanged: (val) {
-                              if (val.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                                setState(() {
-                                  box6 = true;
-                                });
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                          ),
-                        )
-                      : circle(),
-                  box6
-                      ? Container(
-                          width: 32,
-                          height: 40,
-                          child: TextFormField(
-                            decoration:
-                                InputDecoration(border: InputBorder.none),
-                            style: Theme.of(context).textTheme.titleLarge,
-                            keyboardType: TextInputType.number,
-                            onChanged: (val) {
-                              if (val.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                          ),
-                        )
-                      : circle(),
-                ],
-              ),
+            SizedBox(
+              height: 30,
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 66),
-              child: Text(
-                "Didn't receive code? Send Again",
-                style: GoogleFonts.mulish(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    color: Color(0xFF002DE3)),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 63, right: 64, top: 48),
+            //   child:
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     box1
+            //         ? SizedBox(
+            //             width: 32,
+            //             height: 40,
+            //             child: TextFormField(
+            //               //decoration: InputDecoration(border: InputBorder.none),
+            //               style: Theme.of(context).textTheme.titleLarge,
+            //               keyboardType: TextInputType.number,
+            //               onChanged: (val) {
+            //                 if (val.length == 1) {
+            //                   FocusScope.of(context).nextFocus();
+            //                   setState(() {
+            //                     box2 = true;
+            //                   });
+            //                 }
+            //               },
+            //               textAlign: TextAlign.center,
+            //               inputFormatters: [
+            //                 LengthLimitingTextInputFormatter(1),
+            //                 FilteringTextInputFormatter.digitsOnly,
+            //               ],
+            //             ),
+            //           )
+            //         : const circle(),
+            //     box2
+            //         ? SizedBox(
+            //             width: 32,
+            //             height: 40,
+            //             child: TextFormField(
+            //               decoration:
+            //                   const InputDecoration(border: InputBorder.none),
+            //               style: Theme.of(context).textTheme.titleLarge,
+            //               keyboardType: TextInputType.number,
+            //               onChanged: (val) {
+            //                 if (val.length == 1) {
+            //                   FocusScope.of(context).nextFocus();
+            //                 }
+            //                 setState(() {
+            //                   box3 = true;
+            //                 });
+            //               },
+            //               textAlign: TextAlign.center,
+            //               inputFormatters: [
+            //                 LengthLimitingTextInputFormatter(1),
+            //                 FilteringTextInputFormatter.digitsOnly,
+            //               ],
+            //             ),
+            //           )
+            //         : const circle(),
+            //     box3
+            //         ? SizedBox(
+            //             width: 32,
+            //             height: 40,
+            //             child: TextFormField(
+            //               decoration:
+            //                   const InputDecoration(border: InputBorder.none),
+            //               style: Theme.of(context).textTheme.titleLarge,
+            //               keyboardType: TextInputType.number,
+            //               onChanged: (val) {
+            //                 if (val.length == 1) {
+            //                   FocusScope.of(context).nextFocus();
+            //                 }
+            //                 setState(() {
+            //                   box4 = true;
+            //                 });
+            //               },
+            //               textAlign: TextAlign.center,
+            //               inputFormatters: [
+            //                 LengthLimitingTextInputFormatter(1),
+            //                 FilteringTextInputFormatter.digitsOnly,
+            //               ],
+            //             ),
+            //           )
+            //         : const circle(),
+            //     box4
+            //         ? SizedBox(
+            //             width: 32,
+            //             height: 40,
+            //             child: TextFormField(
+            //               decoration:
+            //                   const InputDecoration(border: InputBorder.none),
+            //               style: Theme.of(context).textTheme.titleLarge,
+            //               keyboardType: TextInputType.number,
+            //               onChanged: (val) {
+            //                 if (val.length == 1) {
+            //                   FocusScope.of(context).nextFocus();
+            //                   setState(() {
+            //                     box5 = true;
+            //                   });
+            //                 }
+            //               },
+            //               textAlign: TextAlign.center,
+            //               inputFormatters: [
+            //                 LengthLimitingTextInputFormatter(1),
+            //                 FilteringTextInputFormatter.digitsOnly,
+            //               ],
+            //             ),
+            //           )
+            //         : const circle(),
+            //     box5
+            //         ? SizedBox(
+            //             width: 32,
+            //             height: 40,
+            //             child: TextFormField(
+            //               decoration:
+            //                   const InputDecoration(border: InputBorder.none),
+            //               style: Theme.of(context).textTheme.titleLarge,
+            //               keyboardType: TextInputType.number,
+            //               onChanged: (val) {
+            //                 if (val.length == 1) {
+            //                   FocusScope.of(context).nextFocus();
+            //                   setState(() {
+            //                     box6 = true;
+            //                   });
+            //                 }
+            //               },
+            //               textAlign: TextAlign.center,
+            //               inputFormatters: [
+            //                 LengthLimitingTextInputFormatter(1),
+            //                 FilteringTextInputFormatter.digitsOnly,
+            //               ],
+            //             ),
+            //           )
+            //         : const circle(),
+            //     box6
+            //         ? SizedBox(
+            //             width: 32,
+            //             height: 40,
+            //             child: TextFormField(
+            //               decoration:
+            //                   const InputDecoration(border: InputBorder.none),
+            //               style: Theme.of(context).textTheme.titleLarge,
+            //               keyboardType: TextInputType.number,
+            //               onChanged: (val) {
+            //                 if (val.length == 1) {
+            //                   FocusScope.of(context).nextFocus();
+            //                 }
+            //               },
+            //               textAlign: TextAlign.center,
+            //               inputFormatters: [
+            //                 LengthLimitingTextInputFormatter(1),
+            //                 FilteringTextInputFormatter.digitsOnly,
+            //               ],
+            //             ),
+            //           )
+            //         : const circle(),
+            //   ],
+            // ),
+            // ),
+
+            SizedBox(
+              width: 250,
+              height: 80,
+              child: TextFormField(
+                keyboardType: TextInputType.number,
+                controller: _otpController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                      // borderRadius: BorderRadius.all(Radius.circular(10)),
+
+                      borderSide: BorderSide(width: 1)),
+                  hintText: 'Enter OTP',
+                  prefixIcon: Icon(Icons.message),
+                ),
+                validator: (value) {
+                  if (value!.length != 6) {
+                    return 'Please enter valid OTP';
+                  }
+                  return null;
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
             ),
 
-            //
             Padding(
               padding: const EdgeInsets.only(top: 50),
               child: GestureDetector(
@@ -238,20 +261,40 @@ class _VerifyOtpState extends State<VerifyOtp> {
                             )),
                   );
                 },
-                child: Container(
-                  width: 327,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: const Color(0xFF002DE3),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Save and Continue",
-                      style: GoogleFonts.mulish(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Colors.white),
+                child: InkWell(
+                  onTap: () async {
+                    try {
+                      PhoneAuthCredential credential =
+                          PhoneAuthProvider.credential(
+                              verificationId: widget.verificationId,
+                              smsCode: _otpController.text.toString());
+                      FirebaseAuth.instance
+                          .signInWithCredential(credential)
+                          .then((value) => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Home(
+                                        phonenumber: widget.number,
+                                      ))));
+                    } catch (ex) {
+                      log(ex.toString() as num);
+                    }
+                  },
+                  child: Container(
+                    width: 327,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: const Color(0xFF002DE3),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Save and Continue",
+                        style: GoogleFonts.mulish(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
@@ -264,6 +307,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
   }
 }
 
+// ignore: camel_case_types
 class circle extends StatelessWidget {
   const circle({super.key});
 
@@ -273,7 +317,7 @@ class circle extends StatelessWidget {
       height: 24,
       width: 24,
       decoration:
-          BoxDecoration(shape: BoxShape.circle, color: Color(0xFFEDEDED)),
+          const BoxDecoration(shape: BoxShape.circle, color: Color(0xFFEDEDED)),
     );
   }
 }

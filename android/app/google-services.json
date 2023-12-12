@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422374059004",
+    "project_id": "leadesh",
+    "storage_bucket": "leadesh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422374059004:android:322485d77d840b81b2e079",
+        "android_client_info": {
+          "package_name": "com.example.leadx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW0ZKo2ZYTUx6UcDijPrZka7AVibiS6lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
