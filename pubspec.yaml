@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_auth: ^4.15.3
   country_code_picker: ^3.0.0
+  flutter_html:
 
 flutter_native_splash:
   android: true

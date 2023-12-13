@@ -6,6 +6,9 @@ import 'package:leadx/screens/constants.dart';
 import 'package:leadx/screens/keywords.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/paymentplanspage.dart';
+import 'package:leadx/screens/privacy_policy.dart';
+import 'package:leadx/screens/profile.dart';
+import 'package:leadx/screens/termsAndConditions.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -52,14 +55,14 @@ Widget? draw(BuildContext context, phonenumber) {
           ),
           const Divider(),
           ListTile(
-            title: Text('Messages'),
+            title: const Text('Messages'),
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Home()));
+                  .push(MaterialPageRoute(builder: (_) => const Home()));
             },
           ),
           ListTile(
-            title: Text('Keywords'),
+            title: const Text('Keywords'),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => KeywordPage(
@@ -68,7 +71,7 @@ Widget? draw(BuildContext context, phonenumber) {
             },
           ),
           ListTile(
-            title: Text('Subscription Plans'),
+            title: const Text('Subscription Plans'),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => const PaymentPlansPage(
@@ -77,50 +80,97 @@ Widget? draw(BuildContext context, phonenumber) {
             },
           ),
           ListTile(
-            title: Text('Notification Settings'),
+            title: const Text('Notification Settings'),
             onTap: () {},
           ),
           ListTile(
-            title: Text('Profile'),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text('About'),
+            title: const Text('Profile'),
             onTap: () {
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const ProfilePage()));
+            },
+          ),
+          ListTile(
+            title: const Text('About'),
+            onTap: () {
+              Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (_) => AboutScreen(),
+                  builder: (_) => const AboutScreen(),
                 ),
               );
             },
           ),
           ListTile(
-            title: Text('FAQs'),
+            title: const Text('FAQs'),
             onTap: () {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => FAQScreen(),
+                  builder: (_) => const FAQScreen(),
                 ),
               );
             },
           ),
           ListTile(
-            title: Text('Terms And Conditions'),
-            onTap: () {},
+            title: const Text('Terms And Conditions'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const TermsAndConditionsPage(),
+                ),
+              );
+            },
           ),
           ListTile(
-            title: Text('Privacy Policy'),
-            onTap: () {},
+            title: const Text('Privacy Policy'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const PrivacyPolicyPage(),
+                ),
+              );
+            },
           ),
           ListTile(
-            title: Text('Log out'),
+            title: const Text('Log out'),
             onTap: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (_) => LandingPage(),
-                ),
-              );
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.error,
+                            color: Colors.red.shade300,
+                            size: 50,
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Are you sure you want to logout?',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () async {
+                              await FirebaseAuth.instance.signOut();
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) => const LandingPage(),
+                                ),
+                              );
+                            },
+                            child: const Text('Yes')),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('No')),
+                      ],
+                    );
+                  });
             },
           ),
           const SizedBox(
