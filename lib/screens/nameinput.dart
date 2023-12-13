@@ -13,11 +13,11 @@ class InputName extends StatefulWidget {
 class _InputNameState extends State<InputName> {
   final TextEditingController _namecontroller = TextEditingController();
   final int maxLength = 30;
-  int res = 0;
+  int res = 30;
 
   void updateres(int n) {
     setState(() {
-      res = maxLength - n;
+      res = (n - maxLength).abs();
     });
   }
 

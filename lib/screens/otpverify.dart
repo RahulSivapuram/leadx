@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leadx/screens/home.dart';
+import 'package:leadx/screens/paymentplanspage.dart';
+
+import 'constants.dart';
 
 // ignore: must_be_immutable
 class VerifyOtp extends StatefulWidget {
-  final String number;
   String verificationId;
-  VerifyOtp({super.key, required this.number, required this.verificationId});
+  VerifyOtp({super.key, required this.verificationId});
 
   @override
   State<VerifyOtp> createState() => _VerifyOtpState();
@@ -24,6 +26,8 @@ class _VerifyOtpState extends State<VerifyOtp> {
   // bool box1 = true;
   // bool box5 = false;
   // bool box6 = false;
+
+  bool afterotpscreen = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +64,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
             Padding(
               padding: const EdgeInsets.only(top: 12, left: 40, right: 40),
               child: Text(
-                "Enter the code we've sent \n to  ${widget.number}",
+                "Enter the code we've sent \n to  ${Constants().number1}",
                 style: GoogleFonts.mulish(
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
@@ -252,49 +256,49 @@ class _VerifyOtpState extends State<VerifyOtp> {
 
             Padding(
               padding: const EdgeInsets.only(top: 50),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (_) => Home(
-                              phonenumber: widget.number,
-                            )),
-                  );
+              child: InkWell(
+                onTap: () async {
+                  try {
+                    PhoneAuthCredential credential =
+                        PhoneAuthProvider.credential(
+                            verificationId: widget.verificationId,
+                            smsCode: _otpController.text.toString());
+                    FirebaseAuth.instance
+                        .signInWithCredential(credential)
+                        .then((value) {
+                      setState(() {
+                        afterotpscreen = !afterotpscreen;
+                      });
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentPlansPage(
+                                    afterotpval: afterotpscreen,
+                                  )));
+                    });
+                  } catch (ex) {
+                    log(ex.toString() as num);
+                  }
                 },
-                child: InkWell(
-                  onTap: () async {
-                    try {
-                      PhoneAuthCredential credential =
-                          PhoneAuthProvider.credential(
-                              verificationId: widget.verificationId,
-                              smsCode: _otpController.text.toString());
-                      FirebaseAuth.instance
-                          .signInWithCredential(credential)
-                          .then((value) => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Home(
-                                        phonenumber: widget.number,
-                                      ))));
-                    } catch (ex) {
-                      log(ex.toString() as num);
-                    }
-                  },
-                  child: Container(
-                    width: 327,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: const Color(0xFF002DE3),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Save and Continue",
-                        style: GoogleFonts.mulish(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Colors.white),
-                      ),
+                /*onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => Home(),
+                  ),
+                ),*/
+                child: Container(
+                  width: 327,
+                  height: 52,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: const Color(0xFF002DE3),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Save and Continue",
+                      style: GoogleFonts.mulish(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Colors.white),
                     ),
                   ),
                 ),

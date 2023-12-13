@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:leadx/screens/home.dart';
 
 class KeywordPage extends StatefulWidget {
   final String number;
@@ -120,77 +121,7 @@ class _KeywordPageState extends State<KeywordPage> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF002DE3),
-                  ),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Rahul',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                        Text(
-                          widget.number,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                        )
-                      ])),
-              ListTile(
-                title: const Text('Keywords'),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => KeywordPage(
-                            number: widget.number,
-                          )));
-                },
-              ),
-              ListTile(
-                title: Text('Payment Plans'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Notifications'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Profile'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('About'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Terms And Conditions'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Privacy Policy'),
-                onTap: () {},
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 5.1,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50),
-                child: Text('Version : 1.7.10'),
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: draw(context, widget.number),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

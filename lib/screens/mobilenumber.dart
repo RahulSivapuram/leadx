@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:leadx/screens/constants.dart';
 import 'package:leadx/screens/otpverify.dart';
 
 class LoginMobile extends StatefulWidget {
@@ -12,7 +13,6 @@ class LoginMobile extends StatefulWidget {
 }
 
 class _LoginMobileState extends State<LoginMobile> {
-  late String number1 = "";
   CountryCode _countryCode = CountryCode(code: 'IN', dialCode: '+91');
   final TextEditingController _phonecontroller = TextEditingController();
   @override
@@ -149,24 +149,28 @@ class _LoginMobileState extends State<LoginMobile> {
                 child: GestureDetector(
                   onTap: () async {
                     setState(() {
-                      number1 = _phonecontroller.text.toString();
+                      Constants().number1 = _phonecontroller.text.toString();
                     });
                     await FirebaseAuth.instance.verifyPhoneNumber(
                         verificationCompleted:
                             (PhoneAuthCredential credentail) {},
-                        verificationFailed: (FirebaseAuthException ex) {},
+                        verificationFailed: (FirebaseAuthException ex) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => VerifyOtp(verificationId: "")));
+                        },
                         codeSent: (String verificationid, int? resendtoken) {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => VerifyOtp(
-                                        number:
-                                            "${_countryCode.dialCode}$number1",
-                                        verificationId: verificationid,
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VerifyOtp(
+                                verificationId: verificationid,
+                              ),
+                            ),
+                          );
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
-                        phoneNumber: "${_countryCode.dialCode}$number1");
+                        phoneNumber:
+                            "${_countryCode.dialCode}${Constants().number1}");
                   },
                   child: Container(
                     width: 327,

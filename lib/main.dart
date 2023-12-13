@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:leadx/firebase_options.dart';
+import 'package:leadx/screens/home.dart';
 // import 'package:leadx/screens/keywords.dart';
 import 'package:leadx/screens/landingpage.dart';
 
@@ -22,13 +24,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Chateo',
+      title: 'Leadesh',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LandingPage(),
+      home: SplashScreen(),
     );
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Check for existing authentication state
+    if (FirebaseAuth.instance.currentUser != null) {
+      // User is already authenticated, navigate to the main screen
+      return const Home();
+    } else {
+      // User not authenticated, navigate to the login screen
+      return const LandingPage();
+    }
   }
 }
