@@ -204,17 +204,12 @@ Widget? draw(BuildContext context, phonenumber) {
             title: const Text('Subscription Plans'),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => const PaymentPlansPage(
-                        afterotpval: false,
-                      )));
+                  builder: (_) => const SubscriptionFinished()));
             },
           ),
           ListTile(
             title: const Text('Notification Settings'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => const SubscriptionFinished()));
-            },
+            onTap: () {},
           ),
           ListTile(
             title: const Text('Profile'),
