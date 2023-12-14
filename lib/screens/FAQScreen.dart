@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/constants.dart';
+import 'package:leadx/constants.dart';
 import 'package:leadx/screens/home.dart';
 
 class FAQScreen extends StatefulWidget {

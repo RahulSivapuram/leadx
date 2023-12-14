@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/mobilenumber.dart';
+import 'package:leadx/login/mobilenumber.dart';
+import 'package:leadx/screens/home.dart';
 
 class InputName extends StatefulWidget {
   const InputName({super.key});
@@ -12,8 +13,8 @@ class InputName extends StatefulWidget {
 
 class _InputNameState extends State<InputName> {
   final TextEditingController _namecontroller = TextEditingController();
-  final int maxLength = 30;
-  int res = 30;
+  final int maxLength = 25;
+  int res = 25;
 
   void updateres(int n) {
     setState(() {
@@ -107,29 +108,12 @@ class _InputNameState extends State<InputName> {
             Padding(
               padding: const EdgeInsets.only(top: 81),
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => LoginMobile()),
-                  );
-                },
-                child: Container(
-                  width: 327,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: const Color(0xFF002DE3),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Continue",
-                      style: GoogleFonts.mulish(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => LoginMobile()),
+                    );
+                  },
+                  child: buttonh("Continue")),
             ),
           ],
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/constants.dart';
+import 'package:leadx/constants.dart';
 import 'package:leadx/screens/home.dart';
 
 class PaymentPlansPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Payment Plans",
+            "Subscription Plans",
             style: GoogleFonts.mulish(
                 color: Colors.black, fontWeight: FontWeight.bold),
           ),
@@ -108,7 +108,7 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
                     )
                   : Padding(
                       padding: const EdgeInsets.only(top: 15),
-                      child: button(Colors.green, "Start yout 7-day trial", 60,
+                      child: button(Colors.green, "Start your 7-day trial", 60,
                           Colors.white, 300, 20),
                     ),
 

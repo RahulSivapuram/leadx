@@ -2,8 +2,8 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/constants.dart';
-import 'package:leadx/screens/otpverify.dart';
+import 'package:leadx/constants.dart';
+import 'package:leadx/login/otpverify.dart';
 
 class LoginMobile extends StatefulWidget {
   const LoginMobile({super.key});

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leadx/screens/home.dart';
-import 'package:leadx/screens/paymentplanspage.dart';
+import 'package:leadx/subscription/subscriptionplanspage.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 // ignore: must_be_immutable
 class VerifyOtp extends StatefulWidget {
