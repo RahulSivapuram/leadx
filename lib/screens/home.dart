@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leadx/screens/keywords.dart';
+import 'package:leadx/screens/noInternet.dart';
+import 'package:leadx/screens/notification_setting_screen.dart';
 
 class Home extends StatefulWidget {
   final String phonenumber;
@@ -15,6 +17,16 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const NotificationSettingScreen()));
+              },
+              icon: const Icon(Icons.notifications))
+        ],
         title: const Text('Messages'),
       ),
       drawer: Drawer(
@@ -29,7 +41,7 @@ class _HomeState extends State<Home> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Rahul',
                           style: TextStyle(
                             color: Colors.white,
@@ -38,14 +50,14 @@ class _HomeState extends State<Home> {
                         ),
                         Text(
                           widget.phonenumber,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
                           ),
                         )
                       ])),
               ListTile(
-                title: Text('Keywords'),
+                title: const Text('Keywords'),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) => KeywordPage(
@@ -54,40 +66,46 @@ class _HomeState extends State<Home> {
                 },
               ),
               ListTile(
-                title: Text('Payment Plans'),
+                title: const Text('Payment Plans'),
                 onTap: () {},
               ),
               ListTile(
-                title: Text('Notifications'),
+                title: const Text('Notifications'),
                 onTap: () {},
               ),
               ListTile(
-                title: Text('Profile'),
+                title: const Text('Profile'),
                 onTap: () {},
               ),
               ListTile(
-                title: Text('About'),
+                title: const Text('About'),
                 onTap: () {},
               ),
               ListTile(
-                title: Text('Terms And Conditions'),
+                title: const Text('Terms And Conditions'),
                 onTap: () {},
               ),
               ListTile(
-                title: Text('Privacy Policy'),
+                title: const Text('Privacy Policy'),
                 onTap: () {},
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 5.1,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50),
+              const Padding(
+                padding: EdgeInsets.only(left: 50),
                 child: Text('Version : 1.7.10'),
               ),
             ],
           ),
         ),
       ),
+      body: TextButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const NoInternet()));
+          },
+          child: Center(child: Text("No Internet Screen"))),
     );
   }
 }
