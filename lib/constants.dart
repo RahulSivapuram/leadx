@@ -1,6 +1,9 @@
 class Constants {
   String number1 = "";
 
+  String slctplan = "Basic Plan";
+  int nk = 10;
+  int cost = 100;
   Map<int, List<String>> FAQuestions = {
     0: [
       "What is Leadesh?",

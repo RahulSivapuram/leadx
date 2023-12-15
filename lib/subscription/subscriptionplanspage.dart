@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/constants.dart';
+import 'package:leadx/constants.dart';
+import 'package:leadx/screens/Home_Controller.dart';
 import 'package:leadx/screens/home.dart';
 
 class PaymentPlansPage extends StatefulWidget {
@@ -15,13 +17,14 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
   bool checkboxval = false;
   bool starterplan = false;
   bool proplan = false;
+  HomeController vm = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Payment Plans",
+            "Subscription Plans",
             style: GoogleFonts.mulish(
                 color: Colors.black, fontWeight: FontWeight.bold),
           ),
@@ -93,14 +96,24 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
                             margin: EdgeInsets.all(5),
                           );
 
-                          ((starterplan || proplan) && checkboxval)
-                              ? Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_) => const Home(),
-                                  ),
-                                )
-                              : ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackdemo);
+                          if ((starterplan || proplan) && checkboxval) {
+                            if (starterplan == true) {
+                              vm.finalselectedplan = "Basic Plan";
+                              print(vm.finalselectedplan);
+                              vm.update();
+                            } else {
+                              vm.finalselectedplan = "Pro Plan";
+                              vm.update();
+                            }
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const Home(),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackdemo);
+                          }
                         },
                         child: button(Colors.green, "Subscribe Now", 60,
                             Colors.white, 300, 20),
@@ -108,7 +121,7 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
                     )
                   : Padding(
                       padding: const EdgeInsets.only(top: 15),
-                      child: button(Colors.green, "Start yout 7-day trial", 60,
+                      child: button(Colors.green, "Start your 7-day trial", 60,
                           Colors.white, 300, 20),
                     ),
 
@@ -224,14 +237,12 @@ Widget? paymentCard(
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.2,
-                  child: Expanded(
-                    child: Text(
-                      "Monitor upto $nk keywords",
-                      style: GoogleFonts.mulish(
-                          color: textcolor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800),
-                    ),
+                  child: Text(
+                    "Monitor upto $nk keywords",
+                    style: GoogleFonts.mulish(
+                        color: textcolor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800),
                   ),
                 )
               ],
@@ -313,14 +324,12 @@ Widget? paymentCard1(
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.2,
-                  child: Expanded(
-                    child: Text(
-                      "Monitor upto $nk keywords",
-                      style: GoogleFonts.mulish(
-                          color: textcolor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800),
-                    ),
+                  child: Text(
+                    "Monitor upto $nk keywords",
+                    style: GoogleFonts.mulish(
+                        color: textcolor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800),
                   ),
                 )
               ],

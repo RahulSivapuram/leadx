@@ -2,8 +2,9 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/constants.dart';
-import 'package:leadx/screens/otpverify.dart';
+import 'package:leadx/constants.dart';
+import 'package:leadx/login/otpverify.dart';
+import 'package:leadx/screens/home.dart';
 
 class LoginMobile extends StatefulWidget {
   const LoginMobile({super.key});
@@ -154,10 +155,6 @@ class _LoginMobileState extends State<LoginMobile> {
                     await FirebaseAuth.instance.verifyPhoneNumber(
                         verificationCompleted:
                             (PhoneAuthCredential credentail) {},
-                        verificationFailed: (FirebaseAuthException ex) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => VerifyOtp(verificationId: "")));
-                        },
                         codeSent: (String verificationid, int? resendtoken) {
                           Navigator.push(
                             context,
@@ -167,6 +164,10 @@ class _LoginMobileState extends State<LoginMobile> {
                               ),
                             ),
                           );
+                        },
+                        verificationFailed: (FirebaseAuthException ex) {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) => Home()));
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                         phoneNumber:
