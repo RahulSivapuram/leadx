@@ -44,8 +44,8 @@ class SplashScreen extends StatelessWidget {
       return const Home();
     } else {
       // User not authenticated, navigate to the login screen
-      // return const LandingPage();
-      return const Home();
+      return const LandingPage();
+      // return const Home();
     }
   }
 }

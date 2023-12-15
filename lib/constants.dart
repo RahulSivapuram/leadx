@@ -1,6 +1,8 @@
 class Constants {
   String number1 = "";
 
+  static String baseUrl = "https://leadesh-api.onrender.com";
+
   String slctplan = "Basic Plan";
   int nk = 10;
   int cost = 100;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leadx/login/mobilenumber.dart';
+import 'package:leadx/screens/auth/auth_controller.dart';
 import 'package:leadx/screens/home.dart';
 
 class InputName extends StatefulWidget {
@@ -22,102 +24,110 @@ class _InputNameState extends State<InputName> {
     });
   }
 
+  Authcontroller vm = Get.isRegistered<Authcontroller>()
+      ? Get.find<Authcontroller>()
+      : Get.put(Authcontroller());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0),
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new,
-                      color: Colors.black,
-                      weight: 16,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 79, left: 40, right: 40),
-              child: Text(
-                "What's your name?",
-                style: GoogleFonts.mulish(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24,
-                    color: Colors.black),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 48, left: 20, right: 14),
-              child: Row(
-                children: [
-                  Container(
-                      width: 74,
-                      height: 36,
-                      color: const Color(0xFFF7F7FC),
-                      child: Icon(Icons.person_rounded)),
-                  Container(
-                    padding: const EdgeInsets.only(
-                      left: 8,
-                      right: 16,
-                      top: 14,
-                    ),
-                    width: 250,
-                    height: 36,
-                    color: Color(0xFFF7F7FC),
-                    child: TextFormField(
-                      onChanged: (val) {
-                        updateres(_namecontroller.text.length);
+      body: GetBuilder<Authcontroller>(builder: (vm) {
+        return SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
                       },
-                      keyboardType: TextInputType.text,
-                      controller: _namecontroller,
-                      decoration: InputDecoration(
-                        hintText: "Name",
-                        border: InputBorder.none,
-                        hintStyle: GoogleFonts.mulish(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Color(0xFFADB5BD)),
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.black,
+                        weight: 16,
                       ),
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(30),
-                      ],
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 79, left: 40, right: 40),
+                child: Text(
+                  "What's your name?",
+                  style: GoogleFonts.mulish(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      color: Colors.black),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 48, left: 20, right: 14),
+                child: Row(
+                  children: [
+                    Container(
+                        width: 74,
+                        height: 36,
+                        color: const Color(0xFFF7F7FC),
+                        child: Icon(Icons.person_rounded)),
+                    Container(
+                      padding: const EdgeInsets.only(
+                        left: 8,
+                        right: 16,
+                        top: 14,
+                      ),
+                      width: 250,
+                      height: 36,
+                      color: Color(0xFFF7F7FC),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          updateres(_namecontroller.text.length);
+                        },
+                        keyboardType: TextInputType.text,
+                        controller: _namecontroller,
+                        decoration: InputDecoration(
+                          hintText: "Name",
+                          border: InputBorder.none,
+                          hintStyle: GoogleFonts.mulish(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Color(0xFFADB5BD)),
+                        ),
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(30),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 12, left: 40, right: 40),
-              child: Text(
-                "${res} characters remaining",
-                style: GoogleFonts.mulish(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                    color: Colors.black),
+              Padding(
+                padding: const EdgeInsets.only(top: 12, left: 40, right: 40),
+                child: Text(
+                  "${res} characters remaining",
+                  style: GoogleFonts.mulish(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Colors.black),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 81),
-              child: GestureDetector(
+              Padding(
+                padding: const EdgeInsets.only(top: 81),
+                child: GestureDetector(
                   onTap: () {
+                    vm.name.value = _namecontroller.text;
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => LoginMobile()),
+                      MaterialPageRoute(builder: (_) => const LoginMobile()),
                     );
                   },
-                  child: buttonh("Continue")),
-            ),
-          ],
-        ),
-      ),
+                  child: buttonh("Continue"),
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

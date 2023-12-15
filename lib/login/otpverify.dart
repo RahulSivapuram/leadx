@@ -2,7 +2,9 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:leadx/screens/auth/auth_controller.dart';
 import 'package:leadx/screens/home.dart';
 import 'package:leadx/subscription/subscriptionplanspage.dart';
 
@@ -28,6 +30,10 @@ class _VerifyOtpState extends State<VerifyOtp> {
   // bool box6 = false;
 
   bool afterotpscreen = false;
+
+  Authcontroller vm = Get.isRegistered<Authcontroller>()
+      ? Get.find<Authcontroller>()
+      : Get.put(Authcontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -269,6 +275,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
                       setState(() {
                         afterotpscreen = !afterotpscreen;
                       });
+                      vm.signup();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
