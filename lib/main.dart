@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:leadx/firebase_options.dart';
+import 'package:leadx/screens/landingpage.dart';
+import 'package:leadx/screens/notification_setting_screen.dart';
 import 'package:leadx/screens/home.dart';
-// import 'package:leadx/screens/keywords.dart';
+import 'package:leadx/screens/keywords.dart';
 import 'package:leadx/screens/landingpage.dart';
 
 Future main() async {
@@ -27,10 +29,11 @@ class MyApp extends StatelessWidget {
       title: 'Leadesh',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: const LandingPage(),
+      // home: const NotificationSettingScreen(),
     );
   }
 }
