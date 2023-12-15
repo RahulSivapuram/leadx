@@ -31,7 +31,7 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
         ),
         drawer: widget.afterotpval
             ? const Text("")
-            : draw(context, Constants().number1),
+            : Constants().draw(context, Constants().number1),
         body: Container(
           padding: const EdgeInsets.only(left: 8, right: 8),
           child: Column(

@@ -24,7 +24,7 @@ class _SavedMessagesState extends State<SavedMessages> {
         centerTitle: true,
         title: const Text('Saved Messages'),
       ),
-      drawer: draw(context, Constants().number1),
+      drawer: Constants().draw(context, Constants().number1),
       body: GetBuilder<HomeController>(builder: (vm) {
         return ListView.builder(
             itemCount: vm.SavedMessages.length,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:leadx/constants.dart';
 import 'package:leadx/login/mobilenumber.dart';
-import 'package:leadx/screens/home.dart';
 
 class InputName extends StatefulWidget {
   const InputName({super.key});
@@ -113,7 +113,7 @@ class _InputNameState extends State<InputName> {
                       MaterialPageRoute(builder: (_) => LoginMobile()),
                     );
                   },
-                  child: buttonh("Continue")),
+                  child: Constants().buttonh("Continue")),
             ),
           ],
         ),

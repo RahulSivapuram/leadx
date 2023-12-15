@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/home.dart';
+import 'package:leadx/constants.dart';
 
 class KeywordPage extends StatefulWidget {
   final String number;
@@ -121,7 +121,7 @@ class _KeywordPageState extends State<KeywordPage> {
           ),
         ],
       ),
-      drawer: draw(context, widget.number),
+      drawer: Constants().draw(context, widget.number),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

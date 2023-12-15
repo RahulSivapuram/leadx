@@ -27,7 +27,7 @@ class _SubscriptionFinishedState extends State<SubscriptionFinished> {
               color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
-      drawer: draw(context, Constants().number1),
+      drawer: Constants().draw(context, Constants().number1),
       body: Column(
         //crossAxisAlignment: CrossAxisAlignment.start,
         children: [

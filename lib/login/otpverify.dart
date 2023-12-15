@@ -71,7 +71,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
                     color: Colors.black),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             // Padding(

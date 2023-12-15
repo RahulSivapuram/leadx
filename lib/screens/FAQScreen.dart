@@ -15,7 +15,7 @@ class _FAQScreenState extends State<FAQScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: draw(context, ""),
+      drawer: Constants().draw(context, ""),
       appBar: AppBar(
         title: Text(
           "FAQs",

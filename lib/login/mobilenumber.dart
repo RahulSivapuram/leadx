@@ -15,7 +15,7 @@ class LoginMobile extends StatefulWidget {
 
 class _LoginMobileState extends State<LoginMobile> {
   CountryCode _countryCode = CountryCode(code: 'IN', dialCode: '+91');
-  final TextEditingController _phonecontroller = TextEditingController();
+  TextEditingController _phonecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

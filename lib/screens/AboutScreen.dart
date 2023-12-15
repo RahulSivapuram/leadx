@@ -21,7 +21,7 @@ class _AboutScreenState extends State<AboutScreen> {
               color: Colors.black, fontWeight: FontWeight.w600, fontSize: 25),
         ),
       ),
-      drawer: draw(context, Constants().number1),
+      drawer: Constants().draw(context, Constants().number1),
       body: Container(
         padding: const EdgeInsets.all(15),
         height: MediaQuery.of(context).size.height / 1.5,
