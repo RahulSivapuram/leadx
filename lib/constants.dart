@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:leadx/screens/AboutScreen.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/notification_setting_screen.dart';
@@ -24,6 +25,8 @@ class Constants {
   }
 
   String number1 = "";
+
+  static String baseUrl = "https://leadesh-api.onrender.com";
 
   String slctplan = "Basic Plan";
   int nk = 10;
@@ -60,6 +63,10 @@ class Constants {
   };
   //
   Widget? draw(BuildContext context, phonenumber) {
+    DateTime now = DateTime.now();
+
+    // Format the date as "MMM dd yyyy" (e.g., "Dec 18 2023")
+    String formattedDate = DateFormat('MMM dd yyyy').format(now);
     return Drawer(
       child: SafeArea(
         child: Column(
@@ -160,9 +167,17 @@ class Constants {
             SizedBox(
               height: MediaQuery.of(context).size.height / 3.8,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 50),
-              child: Text('Version : 2.1.0'),
+              child: Row(
+                children: [
+                  Text('Version : 2.1.1'),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(formattedDate),
+                ],
+              ),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:leadx/constants.dart';
 
 class NotificationSettingScreen extends StatefulWidget {
   const NotificationSettingScreen({Key? key}) : super(key: key);
@@ -21,20 +22,13 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Constants().draw(context, Constants().number1),
       appBar: AppBar(
         title: const Text(
           "Notification Setting",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.blueAccent,
+        //backgroundColor: Colors.blueAccent,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -152,6 +146,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                 ),
               ),
               const SizedBox(height: 10),
+              /*
               Container(
                 height: 50,
                 width: double.infinity,
@@ -202,6 +197,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                   ],
                 ),
               ),
+              */
               const SizedBox(height: 5),
               Container(
                 height: 50,

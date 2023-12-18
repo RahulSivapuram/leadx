@@ -7,6 +7,7 @@ import 'package:leadx/screens/AboutScreen.dart';
 import 'package:leadx/screens/FAQScreen.dart';
 import 'package:leadx/constants.dart';
 import 'package:leadx/screens/Home_Controller.dart';
+import 'package:leadx/screens/auth/auth_controller.dart';
 import 'package:leadx/screens/keywords.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/savedmessages.dart';
@@ -14,7 +15,7 @@ import 'package:leadx/subscription/subscriptionfinishedpage.dart';
 import 'package:leadx/screens/privacy_policy.dart';
 import 'package:leadx/screens/profile.dart';
 import 'package:leadx/screens/termsAndConditions.dart';
-import 'package:leadx/screens/notification_setting_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -148,11 +149,187 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+      // body: TextButton(
+      //     onPressed: () {
+      //       Navigator.push(context,
+      //           MaterialPageRoute(builder: (context) => const NoInternet()));
+      //     },
+      //     child: Center(child: Text("No Internet Screen"))),
     );
   }
 }
 
-
+Widget? draw(BuildContext context, phonenumber) {
+  Authcontroller authcontroller = Get.put(Authcontroller());
+  return Drawer(
+    child: SafeArea(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          const ListTile(
+            title: Text(
+              'Rahul',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+              ),
+            ),
+          ),
+          ListTile(
+            title: Text(
+              Constants().number1,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('All Messages'),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const Home()));
+            },
+          ),
+          ListTile(
+            title: const Text('Saved Messages'),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const SavedMessages()));
+            },
+          ),
+          ListTile(
+            title: const Text('Keywords'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => KeywordPage(
+                        number: phonenumber,
+                      )));
+            },
+          ),
+          ListTile(
+            title: const Text('Subscription Plans'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => const SubscriptionFinished()));
+            },
+          ),
+          ListTile(
+            title: const Text('Notification Settings'),
+            onTap: () {},
+          ),
+          ListTile(
+            title: const Text('Profile'),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const ProfilePage()));
+            },
+          ),
+          ListTile(
+            title: const Text('About'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const AboutScreen(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('FAQs'),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => const FAQScreen(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Terms And Conditions'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const TermsAndConditionsPage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Privacy Policy'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const PrivacyPolicyPage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Login'),
+            onTap: () {
+              authcontroller.singin();
+            },
+          ),
+          ListTile(
+            title: const Text('Log out'),
+            onTap: () async {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.error,
+                            color: Colors.red.shade300,
+                            size: 50,
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Are you sure you want to logout?',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () async {
+                              await FirebaseAuth.instance.signOut();
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.clear();
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) => const LandingPage(),
+                                ),
+                              );
+                            },
+                            child: const Text('Yes')),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('No')),
+                      ],
+                    );
+                  });
+            },
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 50),
+            child: Text('Version : 1.7.10'),
+          ),
+        ],
+      ),
+    ),
+  );
+}
 /*
 Widget? messagecard(
     BuildContext context,

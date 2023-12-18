@@ -48,18 +48,17 @@ class _FAQScreenState extends State<FAQScreen> {
                   fontSize: 15,
                   color: Colors.black),
             ),
-            const SizedBox(
-              height: 15,
-            ),
+
+            /*
             TextFormField(
               keyboardType: TextInputType.name,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
                   hintText: "Search"),
-            ),
+            ),*/
             SizedBox(
-              height: MediaQuery.of(context).size.height / 12,
+              height: MediaQuery.of(context).size.height / 43,
             ),
             Text(
               "Frequently Asked Questions:",
