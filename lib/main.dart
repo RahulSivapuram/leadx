@@ -3,24 +3,33 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:leadx/firebase_options.dart';
+import 'package:leadx/screens/auth/signin.dart';
 import 'package:leadx/screens/landingpage.dart';
-import 'package:leadx/screens/notification_setting_screen.dart';
 import 'package:leadx/screens/home.dart';
-import 'package:leadx/screens/keywords.dart';
-import 'package:leadx/screens/landingpage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Future.delayed(const Duration(seconds: 5));
+  await Future.delayed(const Duration(seconds: 3));
   FlutterNativeSplash.remove();
-  runApp(const MyApp());
+
+  runApp(MyApp(isLoggedIn: await isUserLogginedIn()));
+}
+
+Future<bool> isUserLogginedIn() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("token");
+  print("token : $token");
+  return (token != null);
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.isLoggedIn});
+
+  final bool isLoggedIn;
 
   // This widget is the root of your application.
   @override
@@ -32,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: const LandingPage(),
+      home: isLoggedIn ? const Home() : SigninPage(),
       // home: const NotificationSettingScreen(),
     );
   }

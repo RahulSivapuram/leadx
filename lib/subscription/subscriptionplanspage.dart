@@ -15,7 +15,7 @@ class PaymentPlansPage extends StatefulWidget {
 
 class _PaymentPlansPageState extends State<PaymentPlansPage> {
   bool checkboxval = false;
-  bool starterplan = false;
+  bool starterplan = true;
   bool proplan = false;
   HomeController vm = Get.put(HomeController());
 

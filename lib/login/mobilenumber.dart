@@ -21,6 +21,13 @@ class _LoginMobileState extends State<LoginMobile> {
       ? Get.find<Authcontroller>()
       : Get.put(Authcontroller());
   final TextEditingController _phonecontroller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _phonecontroller.text = "9369066500";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,7 +184,7 @@ class _LoginMobileState extends State<LoginMobile> {
                           },
                           codeAutoRetrievalTimeout: (String verificationId) {},
                           phoneNumber:
-                              "${_countryCode.dialCode}${Constants().number1}");
+                              "${_countryCode.dialCode}${vm.mobileNumber.value}");
                     },
                     child: Container(
                       width: 327,

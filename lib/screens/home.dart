@@ -7,8 +7,8 @@ import 'package:leadx/screens/AboutScreen.dart';
 import 'package:leadx/screens/FAQScreen.dart';
 import 'package:leadx/constants.dart';
 import 'package:leadx/screens/Home_Controller.dart';
+import 'package:leadx/screens/auth/auth_controller.dart';
 import 'package:leadx/screens/keywords.dart';
-<<<<<<< HEAD
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/savedmessages.dart';
 import 'package:leadx/subscription/subscriptionfinishedpage.dart';
@@ -16,10 +16,7 @@ import 'package:leadx/subscription/subscriptionplanspage.dart';
 import 'package:leadx/screens/privacy_policy.dart';
 import 'package:leadx/screens/profile.dart';
 import 'package:leadx/screens/termsAndConditions.dart';
-=======
-import 'package:leadx/screens/noInternet.dart';
-import 'package:leadx/screens/notification_setting_screen.dart';
->>>>>>> d37a55ebaac028fd9c8684f07166dc5ab1a86e41
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -39,7 +36,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-<<<<<<< HEAD
         title: const Text('All Messages'),
       ),
       drawer: draw(context, Constants().number1),
@@ -77,58 +73,9 @@ class _HomeState extends State<Home> {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('Saved'),
                   ));
-=======
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const NotificationSettingScreen()));
-              },
-              icon: const Icon(Icons.notifications))
-        ],
-        title: const Text('Messages'),
-      ),
-      drawer: Drawer(
-        child: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF002DE3),
-                  ),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Rahul',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                        Text(
-                          widget.phonenumber,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        )
-                      ])),
-              ListTile(
-                title: const Text('Keywords'),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => KeywordPage(
-                            number: widget.phonenumber,
-                          )));
->>>>>>> d37a55ebaac028fd9c8684f07166dc5ab1a86e41
                 },
                 nosaved: false,
               ),
-<<<<<<< HEAD
             ),
             Card(
               color: Colors.white,
@@ -201,54 +148,20 @@ class _HomeState extends State<Home> {
               ),
             )
           ],
-=======
-              ListTile(
-                title: const Text('Payment Plans'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: const Text('Notifications'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: const Text('Profile'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: const Text('About'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: const Text('Terms And Conditions'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: const Text('Privacy Policy'),
-                onTap: () {},
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 5.1,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 50),
-                child: Text('Version : 1.7.10'),
-              ),
-            ],
-          ),
->>>>>>> d37a55ebaac028fd9c8684f07166dc5ab1a86e41
         ),
       ),
-      body: TextButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const NoInternet()));
-          },
-          child: Center(child: Text("No Internet Screen"))),
+      // body: TextButton(
+      //     onPressed: () {
+      //       Navigator.push(context,
+      //           MaterialPageRoute(builder: (context) => const NoInternet()));
+      //     },
+      //     child: Center(child: Text("No Internet Screen"))),
     );
   }
 }
 
 Widget? draw(BuildContext context, phonenumber) {
+  Authcontroller authcontroller = Get.put(Authcontroller());
   return Drawer(
     child: SafeArea(
       child: ListView(
@@ -355,6 +268,12 @@ Widget? draw(BuildContext context, phonenumber) {
             },
           ),
           ListTile(
+            title: const Text('Login'),
+            onTap: () {
+              authcontroller.singin();
+            },
+          ),
+          ListTile(
             title: const Text('Log out'),
             onTap: () async {
               showDialog(
@@ -380,6 +299,9 @@ Widget? draw(BuildContext context, phonenumber) {
                         TextButton(
                             onPressed: () async {
                               await FirebaseAuth.instance.signOut();
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.clear();
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (_) => const LandingPage(),
