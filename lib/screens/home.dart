@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:leadx/screens/AboutScreen.dart';
 import 'package:leadx/screens/FAQScreen.dart';
@@ -11,6 +11,7 @@ import 'package:leadx/screens/auth/auth_controller.dart';
 import 'package:leadx/screens/keywords.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/savedmessages.dart';
+import 'package:leadx/services/notificationservice.dart';
 import 'package:leadx/subscription/subscriptionfinishedpage.dart';
 import 'package:leadx/screens/privacy_policy.dart';
 import 'package:leadx/screens/profile.dart';
@@ -18,7 +19,9 @@ import 'package:leadx/screens/termsAndConditions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({
+    super.key,
+  });
 
   @override
   State<Home> createState() => _HomeState();
@@ -32,11 +35,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     String monthName = DateFormat('MMMM').format(now);
     String indianTime = DateFormat('h:mm a').format(now);
+    bool ans =
+        Noti.shouldSuppressNotification(vm.userstarttime, vm.userstarttime);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('All Messages'),
       ),
+
       drawer: Constants().draw(context, Constants().number1),
       body: SingleChildScrollView(
         child: Column(
@@ -76,6 +82,23 @@ class _HomeState extends State<Home> {
                 nosaved: false,
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  if (ans) {
+                    Noti.noshowBigTextNotification(
+                        title: "Sample",
+                        body: "IT IS WORKING",
+                        s: vm.userstarttime,
+                        e: vm.userendtime);
+                  } else {
+                    vm.soundSelected
+                        ? Noti.showBigTextNotification(
+                            title: "sample", body: "it is working")
+                        : Noti.vibshowBigTextNotification(
+                            title: "sample", body: "It is working");
+                  }
+                },
+                child: Text("press me")),
             Card(
               color: Colors.white,
               elevation: 5,

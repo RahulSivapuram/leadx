@@ -6,11 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:leadx/screens/AboutScreen.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/notification_setting_screen.dart';
-
 import 'screens/FAQScreen.dart';
 import 'screens/home.dart';
 import 'screens/keywords.dart';
-import 'screens/privacy_policy.dart';
 import 'screens/profile.dart';
 import 'screens/savedmessages.dart';
 import 'screens/termsAndConditions.dart';
@@ -122,7 +120,7 @@ class Constants {
               Get.to(TermsAndConditionsPage());
             }),
             DrawContent("Privacy Policy", () {
-              Get.to(PrivacyPolicyPage());
+              // Get.to(DemoApp());
             }),
             DrawContent("Log Out", () async {
               showDialog(
