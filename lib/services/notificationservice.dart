@@ -2,7 +2,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vibration/vibration.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class Noti {
@@ -111,7 +110,6 @@ class Noti {
     DateTime endDateTime =
         DateTime(now.year, now.month, now.day, endTime.hour, endTime.minute);
 
-    
     return now.isAfter(startDateTime) && now.isBefore(endDateTime);
   }
 }

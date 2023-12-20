@@ -5,8 +5,6 @@ import 'package:leadx/constants.dart';
 import 'package:leadx/screens/Home_Controller.dart';
 import 'package:leadx/subscription/subscriptionplanspage.dart';
 
-import '../screens/home.dart';
-
 class SubscriptionFinished extends StatefulWidget {
   const SubscriptionFinished({super.key});
 

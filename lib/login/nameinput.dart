@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leadx/constants.dart';
 import 'package:leadx/login/mobilenumber.dart';
-import 'package:leadx/screens/auth/auth_controller.dart';
-import 'package:leadx/screens/home.dart';
+import 'package:leadx/login/auth/auth_controller.dart';
 
 class InputName extends StatefulWidget {
   const InputName({super.key});
@@ -41,9 +40,7 @@ class _InputNameState extends State<InputName> {
                 child: Row(
                   children: [
                     IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+                      onPressed: () {},
                       icon: const Icon(
                         Icons.arrow_back_ios_new,
                         color: Colors.black,

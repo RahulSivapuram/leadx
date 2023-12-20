@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:leadx/constants.dart';
 import 'package:leadx/screens/Home_Controller.dart';
 
@@ -152,58 +150,6 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    /*
-              Container(
-                height: 50,
-                width: double.infinity,
-                color: const Color.fromARGB(255, 240, 242, 243),
-                child: const Padding(
-                  padding: EdgeInsets.only(top: 10, left: 15),
-                  child: Text(
-                    "In-App Alerts",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  children: [
-                    ListTile(
-                      trailing: Radio<String>(
-                        value: 'On',
-                        groupValue: _selectedOff,
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedOff = value!;
-                          });
-                        },
-                      ),
-                      title: const Text(
-                        "On",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ),
-                    ListTile(
-                      trailing: Radio<String>(
-                        groupValue: _selectedOff,
-                        value: "Off",
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedOff = value!;
-                          });
-                        },
-                      ),
-                      title: const Text(
-                        "Off",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              */
                     const SizedBox(height: 5),
                     Container(
                       height: 50,

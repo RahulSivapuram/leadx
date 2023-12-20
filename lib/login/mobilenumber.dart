@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leadx/constants.dart';
 import 'package:leadx/login/otpverify.dart';
-import 'package:leadx/screens/auth/auth_controller.dart';
+import 'package:leadx/login/auth/auth_controller.dart';
 import 'package:leadx/screens/home.dart';
 
 class LoginMobile extends StatefulWidget {
@@ -178,10 +178,7 @@ class _LoginMobileState extends State<LoginMobile> {
                               ),
                             );
                           },
-                          verificationFailed: (FirebaseAuthException ex) {
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => Home()));
-                          },
+                          verificationFailed: (FirebaseAuthException ex) {},
                           codeAutoRetrievalTimeout: (String verificationId) {},
                           phoneNumber:
                               "${_countryCode.dialCode}${vm.mobileNumber.value}");

@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:leadx/firebase_options.dart';
-import 'package:leadx/screens/auth/signin.dart';
+import 'package:leadx/login/auth/signin.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/home.dart';
 import 'package:leadx/services/notificationservice.dart';
+import 'package:leadx/subscription/subscriptionplanspage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
+      //home: PaymentPlansPage(afterotpval: true)
       home: isLoggedIn ? const Home() : SigninPage(),
       // home: const NotificationSettingScreen(),
     );

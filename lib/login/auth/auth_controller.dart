@@ -1,5 +1,4 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:leadx/services/auth/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +20,7 @@ class Authcontroller extends GetxController {
     final response = await _authService.signin(mobileNumber.value);
     if (response != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString("token", response!["token"]);
+      prefs.setString("token", response["token"]);
     }
     isLoading = false;
     update();
@@ -36,7 +35,7 @@ class Authcontroller extends GetxController {
     print("response of signup : $response");
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("token", response!["token"]);
+    prefs.setString("token", response?["token"]);
   }
 
   @override

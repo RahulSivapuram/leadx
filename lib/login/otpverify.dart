@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:leadx/screens/auth/auth_controller.dart';
-import 'package:leadx/screens/home.dart';
+import 'package:leadx/login/auth/auth_controller.dart';
 import 'package:leadx/subscription/subscriptionplanspage.dart';
 
 import '../constants.dart';
@@ -273,7 +272,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
                         .signInWithCredential(credential)
                         .then((value) {
                       setState(() {
-                        afterotpscreen = !afterotpscreen;
+                        afterotpscreen = true;
                       });
                       vm.signup();
                       Navigator.push(

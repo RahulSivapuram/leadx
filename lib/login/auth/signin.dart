@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:leadx/login/nameinput.dart';
-import 'package:leadx/screens/auth/auth_controller.dart';
+import 'package:leadx/login/auth/auth_controller.dart';
 
 class SigninPage extends StatelessWidget {
   SigninPage({super.key});

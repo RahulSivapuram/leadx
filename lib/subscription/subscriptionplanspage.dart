@@ -120,7 +120,7 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
                       ),
                     )
                   : Padding(
-                      padding: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 10),
                       child: button(Colors.green, "Start your 7-day trial", 60,
                           Colors.white, 300, 20),
                     ),
@@ -130,14 +130,12 @@ class _PaymentPlansPageState extends State<PaymentPlansPage> {
                   left: 20,
                 ),
                 child: SizedBox(
-                  width: 300,
-                  child: Expanded(
-                    child: Text(
-                      "Your first 7 days are on us! No commitments,no credit card required during the trial",
-                      style: GoogleFonts.mulish(
-                        color: const Color(0xFF002De3),
-                        fontWeight: FontWeight.w400,
-                      ),
+                  //width: 300,
+                  child: Text(
+                    "Your first 7 days are on us! No commitments,no credit card required during the trial",
+                    style: GoogleFonts.mulish(
+                      color: const Color(0xFF002De3),
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
@@ -187,20 +185,15 @@ Widget? paymentCard(
       height: MediaQuery.of(context).size.height / 5.5,
       width: MediaQuery.of(context).size.width / 1,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 18, top: 20),
-                child: Text(
-                  title,
-                  style: GoogleFonts.mulish(
-                      color: textcolor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20),
-                ),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 18, top: 20),
+            child: Text(
+              title,
+              style: GoogleFonts.mulish(
+                  color: textcolor, fontWeight: FontWeight.w600, fontSize: 20),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18, top: 5),
@@ -233,21 +226,12 @@ Widget? paymentCard(
             padding: const EdgeInsets.only(
               left: 18,
             ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  child: Text(
-                    "Monitor upto $nk keywords",
-                    style: GoogleFonts.mulish(
-                        color: textcolor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800),
-                  ),
-                )
-              ],
+            child: Text(
+              "Monitor upto $nk keywords",
+              style: GoogleFonts.mulish(
+                  color: textcolor, fontSize: 20, fontWeight: FontWeight.w800),
             ),
-          ),
+          )
         ],
       ),
     ),
@@ -274,20 +258,15 @@ Widget? paymentCard1(
       height: MediaQuery.of(context).size.height / 5.5,
       width: MediaQuery.of(context).size.width / 1,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 18, top: 20),
-                child: Text(
-                  title,
-                  style: GoogleFonts.mulish(
-                      color: textcolor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20),
-                ),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 18, top: 20),
+            child: Text(
+              title,
+              style: GoogleFonts.mulish(
+                  color: textcolor, fontWeight: FontWeight.w600, fontSize: 20),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18, top: 5),
@@ -320,19 +299,10 @@ Widget? paymentCard1(
             padding: const EdgeInsets.only(
               left: 18,
             ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  child: Text(
-                    "Monitor upto $nk keywords",
-                    style: GoogleFonts.mulish(
-                        color: textcolor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800),
-                  ),
-                )
-              ],
+            child: Text(
+              "Monitor upto $nk keywords",
+              style: GoogleFonts.mulish(
+                  color: textcolor, fontSize: 20, fontWeight: FontWeight.w800),
             ),
           ),
         ],

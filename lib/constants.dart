@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:leadx/screens/AboutScreen.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/notification_setting_screen.dart';
-import 'screens/FAQScreen.dart';
+import 'screens/faqScreen.dart';
 import 'screens/home.dart';
 import 'screens/keywords.dart';
 import 'screens/profile.dart';
@@ -169,7 +169,7 @@ class Constants {
               padding: EdgeInsets.only(left: 50),
               child: Row(
                 children: [
-                  Text('Version : 2.1.1'),
+                  Text('Version : 2.1.2'),
                   const SizedBox(
                     width: 5,
                   ),
