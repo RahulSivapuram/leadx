@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   List<List<dynamic>> SavedMessages = [];
+  RxList<String> keywords = RxList<String>();
+  RxList<String> referralpeople = <String>[].obs;
   String finalselectedplan = "";
   bool soundSelected = true;
   bool vibrationSelected = true;

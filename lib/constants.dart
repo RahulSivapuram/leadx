@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:leadx/screens/AboutScreen.dart';
 import 'package:leadx/screens/landingpage.dart';
 import 'package:leadx/screens/notification_setting_screen.dart';
+import 'package:leadx/screens/privacy_policy.dart';
+import 'package:leadx/screens/ref.dart';
 import 'screens/faqScreen.dart';
 import 'screens/home.dart';
 import 'screens/keywords.dart';
@@ -110,6 +112,9 @@ class Constants {
             DrawContent("Profile", () {
               Get.to(ProfilePage());
             }),
+            DrawContent("Referral", () {
+              Get.to(Refereal());
+            }),
             DrawContent("About", () {
               Get.to(AboutScreen());
             }),
@@ -120,7 +125,7 @@ class Constants {
               Get.to(TermsAndConditionsPage());
             }),
             DrawContent("Privacy Policy", () {
-              // Get.to(DemoApp());
+              Get.to(PrivacyPolicyPage());
             }),
             DrawContent("Log Out", () async {
               showDialog(
@@ -163,7 +168,7 @@ class Constants {
                   });
             }),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 3.8,
+              height: MediaQuery.of(context).size.height / 5,
             ),
             Padding(
               padding: EdgeInsets.only(left: 50),
